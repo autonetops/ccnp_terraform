@@ -1,17 +1,16 @@
 {
-    "image": "ghcr.io/autonetops/autonetops_ghcr_clab_template/autonetops_base_image:latest",
-    "hostRequirements": {
-        "cpus": 4,
-        "memory": "16gb",
-        "storage": "32gb"
-    },
-    "containerEnv": {
-        "ANO_CLAB_VERSION": "${localEnv:ANO_CLAB_VERSION}",
-        "ANO_PRIV_KEY_NAME": "${localEnv:ANO_PRIV_KEY_NAME}",
-        "CONTAINERWSF": "${containerWorkspaceFolder}",
-        "GITHUB_REPOSITORY": "${localEnv:GITHUB_REPOSITORY}"
-    },
-    "workspaceMount": "source=${localWorkspaceFolder}/ccnp_terraform,target=/ccnp_terraform,type=bind",
-    "workspaceFolder": "/ccnp_terraform",
-    "postCreateCommand": "python3 /bin/postCreate.py postcreate --run commands.yaml",
+  "image": "ghcr.io/autonetops/autonetops_ghcr_clab_template/autonetops_base_image:latest",
+  "containerEnv": {
+      "CONTAINERWSF": "${containerWorkspaceFolder}",
+      "GITHUB_REPOSITORY": "${localEnv:GITHUB_REPOSITORY}",
+      "GIT_CRYPT_KEY": "${localEnv:GIT_CRYPT_KEY}"
+  },
+  "hostRequirements": {
+      "cpus": 4,
+      "memory": "16gb",
+      "storage": "32gb"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder}/ccnp_terraform,target=/ccnp_terraform,type=bind",
+  "workspaceFolder": "/ccnp_terraform",
+  "postStartCommand": "python3 /bin/postCreate.py postcreate --run commands.yaml"
 }
