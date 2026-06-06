@@ -1,0 +1,5 @@
+# Copy to terraform.tfvars in each lab folder you run, then fill in.
+# terraform.tfvars is gitignored — never commit real values.
+host = "https://sandbox-iosxe-latest-1.cisco.com"
+username   = "admin"
+password   = "C1sco12345"
